@@ -58,7 +58,7 @@
         },
         {
           "name": "HYDRA_OAUTH2_INTROSPECT_URL",
-          "value": "http://internal-ll-dev-hydra-admin-lb-938200238.us-east-2.elb.amazonaws.com:4445/oauth2/introspect"
+          "value": "http://internal-test-hydra-admin-lb-1150266455.us-west-2.elb.amazonaws.com:4445/oauth2/introspect"
         },
         {
           "name": "OAUTH_PUBLIC_VERIFY_EMAIL_URL",
