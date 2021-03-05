@@ -1,0 +1,111 @@
+{
+  "status": "ACTIVE",
+  "family": "test-reaction",
+  "placementConstraints": [],
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+    }
+  ],
+  "executionRoleArn": "arn:aws:iam::662460439248:role/ecsTaskExecutionRole",
+  "compatibilities": [
+    "EC2"
+  ],
+  "volumes": [],
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "containerDefinitions": [
+    {
+      "memoryReservation": 1024,
+      "environment": [
+        {
+          "name": "REACTION_IDENTITY_PUBLIC_PASSWORD_RESET_URL",
+          "value": "https://identity-test.lacrx.com/account/reset-password/TOKEN"
+        },
+        {
+          "name": "REACTION_IDENTITY_PUBLIC_VERIFY_EMAIL_URL",
+          "value": "https://identity-test.lacrx.com/#/verify-email/TOKEN"
+        },
+        {
+          "name": "REACTION_SHOULD_INIT_REPLICA_SET",
+          "value": "false"
+        },
+        {
+          "name": "ROOT_URL",
+          "value": "https://api-test.lacrx.com"
+        },
+        {
+          "name": "NODE_ENV",
+          "value": "production"
+        },
+        {
+          "name": "REACTION_ADMIN_PUBLIC_ACCOUNT_REGISTRATION_URL",
+          "value": "https://admin-test.lacrx.com"
+        },
+        {
+          "name": "HYDRA_OAUTH2_INTROSPECT_URL",
+          "value": "http://internal-ll-dev-hydra-admin-lb-938200238.us-east-2.elb.amazonaws.com:4445/oauth2/introspect"
+        },
+        {
+          "name": "OAUTH_PUBLIC_VERIFY_EMAIL_URL",
+          "value": "https://storefront-test.lacrx.com/verify/TOKEN"
+        },
+        {
+          "name": "STRIPE_API_KEY",
+          "value": ""
+        }
+      ],
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-west-2:662460439248:secret:test/MONGO_URL-ksuGt3",
+          "name": "MONGO_URL"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-west-2:662460439248:secret:test/MAIL_URL-Eu2LWn",
+          "name": "MAIL_URL"
+        }
+      ],
+      "name": "test-reaction",
+      "workingDirectory": "/usr/local/src/app",
+      "mountPoints": [],
+      "image": "662460439248.dkr.ecr.us-west-2.amazonaws.com/lamps-backend:trunk",
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-region": "us-west-2",
+          "awslogs-stream-prefix": "ecs",
+          "awslogs-group": "/ecs/test-reaction"
+        }
+      },
+      "cpu": 0,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 3000,
+          "hostPort": 0
+        }
+      ],
+      "command": [
+        "npm",
+        "run",
+        "start"
+      ],
+      "essential": true,
+      "volumesFrom": []
+    }
+  ],
+  "revision": 1
+}
