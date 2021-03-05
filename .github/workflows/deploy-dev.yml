@@ -1,9 +1,9 @@
-name: Deploy API to Development
+name: Deploy API to Test
 
 on:
   push:
     branches:
-      - develop
+      - trunk
 
 jobs:
   ecs-deploy:
