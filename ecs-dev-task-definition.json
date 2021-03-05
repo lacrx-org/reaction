@@ -30,7 +30,7 @@
   ],
   "containerDefinitions": [
     {
-      "memoryReservation": 1024,
+      "memoryReservation": 512,
       "environment": [
         {
           "name": "REACTION_IDENTITY_PUBLIC_PASSWORD_RESET_URL",
